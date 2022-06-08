@@ -1,13 +1,51 @@
-const Post = () =>{
-    return <div>I'm a post</div>
-}
+import styles from '../../styles/Home.module.css';
+import BlockContent from '@sanity/block-content-to-react';
+import imageUrlBuilder from '@sanity/image-url';
+import {useState, useEffect} from 'react';
+export const Post = ({title, body, image}) => {
+    // console.log(title, body, image);
+    const [imageUrl, setImageUrl] = useState('');
+    useEffect(() => {
+        const imgBuilder = imageUrlBuilder({
+            projectId: '5e7jq8jr',
+            dataset: 'production'
+        });
+        setImageUrl(imgBuilder.image(image));
+    }, [image]);
+    return (<div className={styles.container}>
+
+        <h1>{title}</h1>
+            {imageUrl && <img src={imageUrl} alt ={title}/>}
+        <div className = {styles.card}>
+            <BlockContent block = {body} />
+        </div>
+        </div>
+ 
+    )
+};
+
 
 export const getServerSideProps = async (pageContext)=>{
     const pageSlug = pageContext.query.slug;
-    return{
-        props:{
-            title: "default title",
-            slug: pageSlug
+    console.log(pageSlug);
+    const query = encodeURIComponent( `*[_type == "post" && slug.current == "${pageSlug}"]`);
+    const url = `https://f1gl4ktq.api.sanity.io/v1/data/query/production?query=${query}`;
+    
+    const res = await fetch(url).then(data => data.json());
+    const post = res.result[0];
+    
+    if (!post) {
+        return { 
+            notFound: true };
+    }
+    
+    return {
+        props: { 
+            title:  post.title,
+            body: post.body,
+            image: post.mainImage,
         }
     }
-}
+};
+
+export default Post;
