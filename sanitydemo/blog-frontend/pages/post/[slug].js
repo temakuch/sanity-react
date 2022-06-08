@@ -29,7 +29,7 @@ export const getServerSideProps = async (pageContext)=>{
     const pageSlug = pageContext.query.slug;
     console.log(pageSlug);
     const query = encodeURIComponent( `*[_type == "post" && slug.current == "${pageSlug}"]`);
-    const url = `https://f1gl4ktq.api.sanity.io/v1/data/query/production?query=${query}`;
+    const url = `https://0he28j0q.api.sanity.io/v1/data/query/production?query=${query}`;
     
     const res = await fetch(url).then(data => data.json());
     const post = res.result[0];
