@@ -3,7 +3,7 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { useState, useEffect } from 'react';
 import PostListTest from '../Components/PostListTest';
-
+import  Toolbar  from '../Components/Toolbar';
 const Home =  (posts_)=> {
   const [name, setName] = useState('Defaulty');
   const [age, setAge] = useState(11);
@@ -22,6 +22,7 @@ const Home =  (posts_)=> {
   }, [age]);
   
   return (
+    <>
     <div className={styles.container}>
        <h2>Homepage</h2>
        <button onClick={(e)=> {setAge(age+1);
@@ -33,6 +34,7 @@ const Home =  (posts_)=> {
        
 
     </div>
+    </>
       )
 }
 

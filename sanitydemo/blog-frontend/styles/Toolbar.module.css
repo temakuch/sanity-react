@@ -1,0 +1,18 @@
+.main{
+    margin: auto;
+    width: 75%;
+    display: flex;
+    max-width: 100%;
+    color: aliceblue;
+    margin-bottom: 50px;
+    justify-content: center;
+    background-color: #021b33;
+    border-radius: 20px;
+}
+.main div{
+    margin: 25px;
+    cursor: pointer;
+}
+.main div:hover{
+    color: #4b9ef1;
+}

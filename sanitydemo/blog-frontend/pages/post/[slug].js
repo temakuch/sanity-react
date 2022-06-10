@@ -1,7 +1,9 @@
-import styles from '../../styles/Home.module.css';
+import styles from '../../styles/Post.module.css';
 import BlockContent from '@sanity/block-content-to-react';
 import imageUrlBuilder from '@sanity/image-url';
 import {useState, useEffect} from 'react';
+import Toolbar from '../../Components/Toolbar';
+
 export const Post = ({title, body, image}) => {
     // console.log(title, body, image);
     const [imageUrl, setImageUrl] = useState('');
@@ -12,14 +14,18 @@ export const Post = ({title, body, image}) => {
         });
         setImageUrl(imgBuilder.image(image));
     }, [image]);
-    return (<div className={styles.container}>
+    return (
+        <>
+        
+        <div className={styles.main}>
 
         <h1>{title}</h1>
-            {imageUrl && <img src={imageUrl} alt ={title}/>}
+            {imageUrl && <img className = {styles.mainImage} src={imageUrl} alt ={title}/>}
         <div className = {styles.card}>
             <BlockContent block = {body} />
         </div>
         </div>
+        </>
  
     )
 };
