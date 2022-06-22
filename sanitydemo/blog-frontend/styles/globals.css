@@ -14,3 +14,9 @@ a {
 * {
   box-sizing: border-box;
 }
+.not-found {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+}
