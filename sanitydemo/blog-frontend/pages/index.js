@@ -48,7 +48,7 @@ const Home =  ({posts_})=> {
       </button>)}
       {session &&(
        <>
-       <h1>Welcome to intelligent website</h1>
+       <h1>Welcome to intelligent website {session.user.name}</h1>
         <h3>Hi, you'r cool </h3>
             
         <PostListTest posts={mappedPosts} handleDelete={handleDelete}/>
